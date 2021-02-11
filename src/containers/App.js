@@ -10,19 +10,27 @@ class App extends React.Component {
     const { game, card, addCard, clearStore, blockEvent, newGame } = this.props;
 
     if (game.state === 'greeting') {
-      return <Game newGame={newGame} />;
+      return (
+        <div className="game">
+          <Game newGame={newGame} />
+        </div>
+      );
     } else
-      return card.cards.map(({ name, image }, index) => (
-        <Card
-          key={index}
-          name={name}
-          image={image}
-          card={card}
-          blockEvent={blockEvent}
-          addCard={addCard}
-          clearStore={clearStore}
-        />
-      ));
+      return (
+        <div className="game">
+          {card.cards.map(({ name, image }, index) => (
+            <Card
+              key={index}
+              name={name}
+              image={image}
+              card={card}
+              blockEvent={blockEvent}
+              addCard={addCard}
+              clearStore={clearStore}
+            />
+          ))}
+        </div>
+      );
   }
 }
 
