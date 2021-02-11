@@ -1,6 +1,17 @@
 const Card = (props) => {
+  const { blockEvent, clearStore, addCard, card } = props;
+
+  const matching = (firstCard, secondCard) => {
+    if (firstCard.dataset.name !== secondCard.dataset.name) {
+      setTimeout(() => {
+        firstCard.classList.remove('flip');
+        secondCard.classList.remove('flip');
+        clearStore();
+      }, 2000);
+    } else clearStore();
+  };
+
   const handleClick = (e) => {
-    const { blockEvent, clearStore, addCard, card } = props;
     const currentCard = e.currentTarget;
     currentCard.classList.add('flip');
 
@@ -8,15 +19,7 @@ const Card = (props) => {
       addCard(currentCard);
     } else {
       blockEvent();
-      const firstCardName = card.value.dataset.name;
-      const secondCardName = currentCard.dataset.name;
-      if (firstCardName !== secondCardName) {
-        setTimeout(() => {
-          card.value.classList.remove('flip');
-          currentCard.classList.remove('flip');
-          clearStore();
-        }, 2000);
-      } else clearStore();
+      matching(card.value, currentCard);
     }
   };
 
