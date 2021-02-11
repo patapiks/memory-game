@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background: rgba(33, 46, 59, 1);
+}
+
 .game {
   padding-top: 20px;
   width: 640px;
@@ -51,4 +55,17 @@
 
 .front {
   transform: rotateY(180deg);
+}
+
+.game-greeting {
+  color: rgba(244, 192, 37, 1);
+  text-align: center;
+}
+
+.game-button {
+  height: 40px;
+  width: 200px;
+  background-color: rgba(244, 89, 87, 1);
+  border: 0;
+  border-radius: 5px;
 }
