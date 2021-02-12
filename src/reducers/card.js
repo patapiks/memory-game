@@ -24,17 +24,26 @@ export const initialState = {
   value: null,
   listener: true,
   cards: cardList,
+  uiState: [],
   matched: [],
 };
 
 export const cardReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_FIRST_CARD':
-      return { ...state, isFirst: false, value: action.payload };
+      return {
+        ...state,
+        isFirst: false,
+        value: action.payload,
+        uiState: [...state.uiState, Number(action.payload.id)],
+      };
     case 'CLEAR_STORE':
-      return initialState;
+      return { ...initialState, uiState: [...state.matched], matched: state.matched };
     case 'BLOCK_EVENT':
       return { ...state, listener: false };
+    case 'ADD_MATCHED':
+      const { firstCardId, secondCardId } = action.payload;
+      return { ...state, matched: [...state.matched, Number(firstCardId), Number(secondCardId)] };
     default:
       return state;
   }

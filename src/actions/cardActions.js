@@ -10,3 +10,11 @@ export const clearStore = () => ({
 export const blockEvent = () => ({
   type: 'BLOCK_EVENT',
 });
+
+export const addMatched = (firstCardId, secondCardId) => ({
+  type: 'ADD_MATCHED',
+  payload: {
+    firstCardId,
+    secondCardId,
+  },
+});

@@ -1,19 +1,33 @@
+import cn from 'classnames';
+
 const Card = (props) => {
-  const { blockEvent, clearStore, addCard, card } = props;
+  const { addMatched, blockEvent, clearStore, addCard, card, id } = props;
+
+  if (card.matched.length === 16) {
+    setTimeout(() => {
+      props.changeState('finished');
+    }, 2000);
+  }
+
+  const classCard = cn({
+    'game-card': true,
+    flip: card.uiState.includes(props.id),
+  });
 
   const matching = (firstCard, secondCard) => {
+    addCard(secondCard);
     if (firstCard.dataset.name !== secondCard.dataset.name) {
       setTimeout(() => {
-        firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
         clearStore();
       }, 2000);
-    } else clearStore();
+    } else {
+      addMatched(firstCard.id, secondCard.id);
+      clearStore();
+    }
   };
 
   const handleClick = (e) => {
     const currentCard = e.currentTarget;
-    currentCard.classList.add('flip');
 
     if (card.isFirst) {
       addCard(currentCard);
@@ -25,7 +39,8 @@ const Card = (props) => {
 
   return (
     <div
-      className="game-card"
+      id={id}
+      className={classCard}
       data-name={props.name}
       onClick={props.card.listener ? handleClick : null}
     >

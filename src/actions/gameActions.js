@@ -1,3 +1,4 @@
-export const newGame = () => ({
-  type: 'NEW_GAME',
+export const changeState = (state) => ({
+  type: 'CHANGE_STATE',
+  payload: state,
 });

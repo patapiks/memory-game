@@ -4,8 +4,8 @@ export const initialState = {
 
 export const gameReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'NEW_GAME':
-      return { state: 'active' };
+    case 'CHANGE_STATE':
+      return { state: action.payload };
     default:
       return state;
   }
