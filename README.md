@@ -1,3 +1,3 @@
-[DEPLOY](https://vercel.com/patapiks/memory-game/6wwn6c1jg)  
+[DEPLOY](http://memory-game.patapiks.vercel.app/)  
 
 # GAME MEMORY <image src="./screenshot.png">
